@@ -4,9 +4,8 @@
     <title>演習課題5-2：外部APIの呼び出しテスト</title>
 </head>
 <body>
-    <h1 id="msg">何かのAPI</h1>
-    <form name="apiform"><p>
-        何かのフォーム：<input type="text" name="form_data">
+    <h1 id="msg">カニエ・ウェストのAPI</h1>
+    <form name="apiform"><p>実行ボタンを押すと・・：<input type="text" name="form_data">
         <button type="button" id="btn1" onclick="some_api(this.form)">実行</button>
     </p></form>
     
@@ -16,6 +15,12 @@
             // ここにコードを書く
             document.getElementById("result").innerHTML += myForm.form_data.value+"<br />";
             document.apiform.reset();
+
+            
+            const api_url = "https://api.kanye.rest/"; // Kanye.Rest APIのエンドポイント
+            const response = await fetch(api_url);
+            const data = await response.json();
+            document.getElementById("result").innerHTML += `カニエ・ウェストの名言: "${data.quote}"<br />`;
         }
     </script>
 </body>
